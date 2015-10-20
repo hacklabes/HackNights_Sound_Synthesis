@@ -6,32 +6,26 @@ AudioOutput out;
 
 class ToneInstrument implements Instrument {
   Oscil sineOsc, lfo;
-  ADSR  adsr;
 
   ToneInstrument(float frequency, float amplitude) {
-    sineOsc = new Oscil(frequency, amplitude, Waves.TRIANGLE);
-    lfo = new Oscil(1, 1, Waves.PHASOR);
-    adsr = new ADSR(0.8, 0.01, 0.01, 0.8, 0.5);
+    sineOsc = new Oscil(frequency, amplitude, Waves.SINE);
+    lfo = new Oscil(1, 1, Waves.SINE);
 
     lfo.setFrequency(4);
     lfo.patch(sineOsc.amplitude);
 
     //lfo.offset.setLastValue(frequency);
-    //lfo.setFrequency(10);
-    //lfo.setAmplitude(10);
+    //lfo.setFrequency(2);
+    //lfo.setAmplitude(80);
     //lfo.patch(sineOsc.frequency);
-
-    sineOsc.patch(adsr);
   }
 
   void noteOn(float dur) {
-    adsr.noteOn();
-    adsr.patch(out);
+    sineOsc.patch(out);
   }
 
   void noteOff() {
-    adsr.unpatchAfterRelease(out); 
-    adsr.noteOff();
+    sineOsc.unpatch(out);
   }
 }
 
@@ -51,5 +45,5 @@ void draw() {
 }
 
 void keyPressed() {
-  out.playNote(0, 0.1, new ToneInstrument(min(800, map(key, 'a', 'z', 100, 800)), 0.8));
+  out.playNote(0, 0.5, new ToneInstrument(min(800, map(key, 'a', 'z', 100, 800)), 0.8));
 }

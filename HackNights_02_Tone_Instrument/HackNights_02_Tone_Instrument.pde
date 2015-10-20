@@ -5,18 +5,18 @@ Minim minim;
 AudioOutput out;
 
 class ToneInstrument implements Instrument {
-  Oscil sineOsc;
+  Oscil wave1;
 
   ToneInstrument(float frequency, float amplitude) {
-    sineOsc = new Oscil(frequency, amplitude, Waves.TRIANGLE);
+    wave1 = new Oscil(frequency, amplitude, Waves.TRIANGLE);
   }
 
   void noteOn(float dur) {
-    sineOsc.patch(out);
+    wave1.patch(out);
   }
 
   void noteOff() { 
-    sineOsc.unpatch(out);
+    wave1.unpatch(out);
   }
 }
 

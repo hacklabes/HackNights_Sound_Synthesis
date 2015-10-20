@@ -13,6 +13,10 @@ void setup() {
   out = minim.getLineOut(Minim.MONO, width);
 
   // init an oscillator and patch it to output
+  // Waves.TRIANGLE
+  // Waves.SQUARE
+  // Waves.SAW
+  // Waves.PHASOR
   wave = new Oscil(440, 0.5f, Waves.SINE);
   wave.patch(out);
 }
