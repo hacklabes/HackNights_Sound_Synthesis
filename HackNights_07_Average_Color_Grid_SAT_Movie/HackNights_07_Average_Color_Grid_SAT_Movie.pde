@@ -14,12 +14,8 @@ void setup() {
   background(0);
   // Load and play the video in a loop
   
-    // Load and play the video in a loop
-  //movie = new Movie(this, "out48.mp4");
-  //movie = new Movie(this, "out71.mp4");
-  movie = new Movie(this, "out114.mp4");
-  //movie = new Movie(this, "out148.mp4");
-  //movie = new Movie(this, "transit.mov");
+  movie = new Movie(this, sketchPath("../videos/out114.mp4"));
+
   
   movie.loop();
   movie.read();
