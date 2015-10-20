@@ -10,14 +10,15 @@ class ToneInstrument implements Instrument {
 
   ToneInstrument(float frequency, float amplitude) {
     sineOsc = new Oscil(frequency, amplitude, Waves.TRIANGLE);
-    lfo = new Oscil(1, 1, Waves.SINE);
+    lfo = new Oscil(1, 1, Waves.PHASOR);
     adsr = new ADSR(0.8, 0.01, 0.01, 0.8, 0.5);
 
     lfo.setFrequency(4);
     lfo.patch(sineOsc.amplitude);
 
     //lfo.offset.setLastValue(frequency);
-    //lfo.setFrequency(24);
+    //lfo.setFrequency(10);
+    //lfo.setAmplitude(10);
     //lfo.patch(sineOsc.frequency);
 
     sineOsc.patch(adsr);
