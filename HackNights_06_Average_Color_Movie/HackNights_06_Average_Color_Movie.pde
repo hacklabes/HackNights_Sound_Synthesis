@@ -10,7 +10,7 @@ void setup() {
   //movie = new Movie(this, "out71.mp4");
   //movie = new Movie(this, "out114.mp4");
   //movie = new Movie(this, "out148.mp4");
-  movie = new Movie(this, "transit.mov");
+  movie = new Movie(this, sketchPath("../out71.mp4"));
 
   movie.loop();
   movie.read();
