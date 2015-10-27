@@ -13,16 +13,24 @@ long lastR = 0;
 long lastG = 0;
 long lastB = 0; // track of the last Colors
 
+final int[] notes= { 
+      19, 21, 24, 26, 28, 31, 33, 36, 
+      19, 21, 24, 26, 28, 31, 33, 36, 
+      0, 2, 4, 7, 9, 12, 14, 16, 
+      0, 2, 4, 7, 9, 12, 14, 16, 
+      0, 2, 4, 7, 9, 12, 14, 16, 
+      0, 2, 4, 7, 9, 12, 14, 16
+    };
 
 void setup() {
   size(720, 850);
   background(0);
   // Load and play the video in a loop
   movie = new Movie(this, sketchPath("../videos/out153.mp4"));
-
+    
   movie.loop();
   movie.read();
-
+  movie.volume(0.1);
   movie.jump(random(movie.duration()));
 
   minim = new Minim(this);
@@ -67,7 +75,7 @@ void draw() {
     
     //if the color change then trigger the sound
     //the 10 is the amount of change of 
-    int threshold = 2;
+    int threshold = 5;
     
     
     //using MIDI notes from 0 to 127 https://newt.phys.unsw.edu.au/jw/notes.html
@@ -75,17 +83,17 @@ void draw() {
     // r%127 takes the color value from 0-255(color interval) and transforms it to 0-127 (MIDI interval)
     if( abs(lastR - r) > threshold){
       
-        out.playNote(0, 0.3, new ToneInstrument(Frequency.ofMidiNote(r%127).asHz(), 0.5));
+        out.playNote(0, 0.3, new ToneInstrument(Frequency.ofMidiNote(36+notes[(int)r%notes.length]).asHz(), 0.5));
         
     }
     if( abs(lastG - g) > threshold){
       
-        out.playNote(0, 0.3, new ToneInstrument(Frequency.ofMidiNote(g%127).asHz(), 0.5));
+        out.playNote(0, 0.3, new ToneInstrument(Frequency.ofMidiNote(36+notes[(int)r%notes.length]).asHz(), 0.5));
         
     }
     if( abs(lastB - b) > threshold){
       
-        out.playNote(0, 0.3, new ToneInstrument(Frequency.ofMidiNote(b%127).asHz(), 0.5));
+        out.playNote(0, 0.3, new ToneInstrument(Frequency.ofMidiNote(36+notes[(int)r%notes.length]).asHz(), 0.5));
         
     }
     
